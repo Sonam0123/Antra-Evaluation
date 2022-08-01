@@ -48,7 +48,13 @@
     font-size: 1.5rem;
     float: right;
     margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000
 }
 #deleteIcon{
     background-color: rgb(196, 86, 86);
+    cursor: pointer;
+    position: relative;
+    z-index: 1000
 }
