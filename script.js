@@ -26,6 +26,8 @@ const postData = (e) => {
         title: input.value,
         completed: false
     }
+    }).then(function (response) {
+        this.title = response.data.title
     })
 }
 
@@ -35,6 +37,7 @@ button.addEventListener('click', function post() {
     const li = document.createElement('p');
     li.innerHTML = todo;
     const innerDiv = document.createElement('div');
+    const secondDiv = document.createElement('div');
     li.appendChild(innerDiv);
     innerDiv.innerHTML = deleteIcon
     innerDiv.innerHTML += editIcon
@@ -42,29 +45,35 @@ button.addEventListener('click', function post() {
     input.classList.add('todo');
     li.classList.add('todo-item');
     main.appendChild(li);
+    main.appendChild(secondDiv);
     input.value = '';
     li.addEventListener('click', function(e) {
-      li.style.textDecoration = "line-through";
-      // e.removeChild(li);
+      li.id='new-todo';
+      secondDiv.innerHTML = todo
+      secondDiv.classList.add('todo-item');
+      secondDiv.style.textDecoration = "line-through";
       })
     }
     );
     post()
 //Updating Data on the server
+updateData = (e) => {
+e.preventDefault();
+axios({
+method: 'PUT',
+url: `http://localhost:3000/todos/${id}`, 
+data: {
+    title: input.value,
+    completed: false
+}
+})
+
+};
 editIcon.addEventListener('click',
-    console.log('clicked'),
-    updateData = (e) => {
-    e.preventDefault();
-    axios({
-    method: 'PUT',
-    url: `http://localhost:3000/todos/${id}`, 
-    data: {
-        title: input.value,
-        completed: false
-    }
-    })
-    
-});
+setTimeout(() => {
+    console.log('clicked')
+}, 1000)
+);
 
 deleteIcon.addEventListener('click', deleteData = (e) => {
     e.preventDefault();

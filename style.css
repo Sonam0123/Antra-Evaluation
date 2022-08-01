@@ -58,3 +58,6 @@
     position: relative;
     z-index: 1000
 }
+#new-todo{
+    display: none;
+}
